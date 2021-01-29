@@ -35,7 +35,7 @@
         </div>
 
 
-        <div class="booking-form">
+        <div class="booking-form" id="booking-form">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -102,7 +102,14 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button class="btn-style" id="bookingBtn">Book Now</button>
+        </div>
+
+        <div class="success-message" id="success-message">
+            <h1>Congratulations!</h1>
+            <img src="./images/new-product.png">
+            <h3>You have successfully purchased the tickets.</h3>
+            <p>Thanks for being a part of our journey.</p>
         </div>
     </main>
 
@@ -126,25 +133,31 @@
       
     //   calculate total cost from this function 
       function calculateTotal (){
-          const firstClassTicketCount = getInputValue('firstClassTicket');
-          const economyTicketCount = getInputValue('economyTicket');
+        const firstClassTicketCount = getInputValue('firstClassTicket');
+        const economyTicketCount = getInputValue('economyTicket');
 
-          const subTotalPrice = (firstClassTicketCount * 150) + (economyTicketCount * 100);
-          document.getElementById('subTotalPrice').innerText = subTotalPrice;
+        const subTotalPrice = (firstClassTicketCount * 150) + (economyTicketCount * 100);
+        document.getElementById('subTotalPrice').innerText = subTotalPrice;
 
-          const taxAmount = subTotalPrice * .1;
-          document.getElementById('tax-amount').innerText = taxAmount;
+        const taxAmount = subTotalPrice * .1;
+        document.getElementById('tax-amount').innerText = taxAmount;
 
-          const totalPrice = subTotalPrice + taxAmount;
-          document.getElementById('total-price').innerText = totalPrice;
+        const totalPrice = subTotalPrice + taxAmount;
+        document.getElementById('total-price').innerText = totalPrice;
       }
       
     //   get input value from this function
-      function getInputValue (ticket){
-          const ticketInput = document.getElementById(ticket + '-count');
-          const ticketCount = parseInt(ticketInput.value);
-          return ticketCount;
+        function getInputValue (ticket){
+        const ticketInput = document.getElementById(ticket + '-count');
+        const ticketCount = parseInt(ticketInput.value);
+        return ticketCount;
       }
+
+    //   book now button click event
+        document.getElementById('bookingBtn').addEventListener('click', function(){
+        document.getElementById('booking-form').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+      })
     </script>
 </body>
 
